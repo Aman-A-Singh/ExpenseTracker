@@ -1,5 +1,6 @@
 package com.cornerstoneondemand.expensetracker.fragments
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -9,8 +10,11 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.cornerstoneondemand.expensetracker.EditExpenseActivity
 import com.cornerstoneondemand.expensetracker.R
 import com.cornerstoneondemand.expensetracker.adapters.ExpenseAdapter
+import com.cornerstoneondemand.expensetracker.database.Expense
+import com.cornerstoneondemand.expensetracker.utilities.EXPENSE_ID
 import com.cornerstoneondemand.expensetracker.viewmodel.ThisMonthViewModel
 import java.text.SimpleDateFormat
 import java.util.*
@@ -42,7 +46,11 @@ class ThisMonthFragment : Fragment() {
         text_view_month_year.text = dateFormat.format(date)
         recyclerView.setHasFixedSize(true)
         recyclerView.layoutManager = LinearLayoutManager(activity)
-        adapter = ExpenseAdapter()
+        adapter = ExpenseAdapter({id->
+            val intent = Intent(activity, EditExpenseActivity()::class.java)
+            intent.putExtra(EXPENSE_ID, id)
+            this.startActivity(intent)
+        })
         recyclerView.adapter = adapter
 
 

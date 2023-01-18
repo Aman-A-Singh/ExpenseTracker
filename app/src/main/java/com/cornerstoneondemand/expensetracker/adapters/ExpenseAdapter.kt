@@ -11,7 +11,7 @@ import com.cornerstoneondemand.expensetracker.utilities.Category
 import com.cornerstoneondemand.expensetracker.utilities.getCategoryName
 import de.hdodenhof.circleimageview.CircleImageView
 
-class ExpenseAdapter() : RecyclerView.Adapter<ExpenseAdapter.ExpenseViewHolder>() {
+class ExpenseAdapter(private val onItemClickListener: (Int) -> Unit) : RecyclerView.Adapter<ExpenseAdapter.ExpenseViewHolder>() {
 
     private var expenseList = ArrayList<Expense>()
 
@@ -81,5 +81,10 @@ class ExpenseAdapter() : RecyclerView.Adapter<ExpenseAdapter.ExpenseViewHolder>(
         val amount = itemView.findViewById<TextView>(R.id.text_view_amount)
         val note = itemView.findViewById<TextView>(R.id.text_view_note)
         val categoryImage = itemView.findViewById<CircleImageView>(R.id.category_image)
+        init {
+            itemView.setOnClickListener {
+                onItemClickListener(expenseList[adapterPosition].id)
+            }
+        }
     }
 }

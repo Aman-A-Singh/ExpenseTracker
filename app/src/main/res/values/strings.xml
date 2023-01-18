@@ -10,4 +10,5 @@
         <item>Card</item>
         <item>E-Wallet</item>
     </string-array>
+    <string name="title_activity_edit_expense">EditExpenseActivity</string>
 </resources>

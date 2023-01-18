@@ -27,7 +27,7 @@ class FutureExpenseViewModel(application: Application) : AndroidViewModel(applic
             it.filter {
                 val calendar = Calendar.getInstance()
                 calendar.time = it.date
-                (calendar.get(Calendar.MONTH) + 1 > currentMonth) or (calendar.get(Calendar.YEAR) > currentYear)
+                ((calendar.get(Calendar.MONTH) + 1 > currentMonth) and (calendar.get(Calendar.YEAR)==currentYear)) or (calendar.get(Calendar.YEAR) > currentYear)
             }
         }
     }

@@ -1,5 +1,6 @@
 package com.cornerstoneondemand.expensetracker.fragments
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -8,8 +9,10 @@ import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.cornerstoneondemand.expensetracker.EditExpenseActivity
 import com.cornerstoneondemand.expensetracker.R
 import com.cornerstoneondemand.expensetracker.adapters.ExpenseAdapter
+import com.cornerstoneondemand.expensetracker.utilities.EXPENSE_ID
 import com.cornerstoneondemand.expensetracker.viewmodel.FutureExpenseViewModel
 
 class FutureFragment : Fragment() {
@@ -32,7 +35,11 @@ class FutureFragment : Fragment() {
 
         recyclerView.setHasFixedSize(true)
         recyclerView.layoutManager =LinearLayoutManager(activity)
-        adapter = ExpenseAdapter()
+        adapter = ExpenseAdapter({id->
+            val intent = Intent(activity, EditExpenseActivity()::class.java)
+            intent.putExtra(EXPENSE_ID, id)
+            this.startActivity(intent)
+        })
         recyclerView.adapter = adapter
 
         viewModel = ViewModelProvider(this).get(FutureExpenseViewModel::class.java)
