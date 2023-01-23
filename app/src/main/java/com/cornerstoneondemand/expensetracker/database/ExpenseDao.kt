@@ -16,8 +16,8 @@ interface ExpenseDao {
     @Query("SELECT * FROM $DATABASE_NAME")
     fun getAll() : LiveData<List<Expense>>
 
-    @Query("SELECT * FROM $DATABASE_NAME where strftime('%m', date) = :month")
-    fun getThisMonthExpense(month:String):LiveData<List<Expense>>
+    @Query("SELECT * FROM $DATABASE_NAME where strftime('%m', date) = strftime('%m',date('now'))")
+    fun getThisMonthExpense():LiveData<List<Expense>>
 
     @Query("SELECT * FROM $DATABASE_NAME where strftime('%m',date)<strftime('%m',date('now'))")
     fun getLastMonthExpense():LiveData<List<Expense>>

@@ -13,7 +13,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.cornerstoneondemand.expensetracker.EditExpenseActivity
 import com.cornerstoneondemand.expensetracker.R
 import com.cornerstoneondemand.expensetracker.adapters.ExpenseAdapter
-import com.cornerstoneondemand.expensetracker.database.Expense
 import com.cornerstoneondemand.expensetracker.utilities.EXPENSE_ID
 import com.cornerstoneondemand.expensetracker.viewmodel.ThisMonthViewModel
 import java.text.SimpleDateFormat
@@ -35,11 +34,17 @@ class ThisMonthFragment : Fragment() {
         // Inflate the layout for this fragment
         //Initializing the UI
         val view = inflater.inflate(R.layout.fragment_this_month, container, false)
+
+        return view
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
         val recyclerView = view.findViewById<RecyclerView>(R.id.recycler_view_this_month)
 
         val date = Date()
         val text_view_date = view.findViewById<TextView>(R.id.text_view_date)
-        text_view_date.text = date.date.toString()
+        text_view_date.text = date.toString()
 
         val text_view_month_year = view.findViewById<TextView>(R.id.text_view_month_year)
         val dateFormat = SimpleDateFormat("MMMM yyyy", Locale.getDefault())
@@ -68,6 +73,5 @@ class ThisMonthFragment : Fragment() {
             val text_view_total = view.findViewById<TextView>(R.id.text_view_total)
             text_view_total.text = String.format("%,.2f",totalAmount)
         }
-        return view
     }
 }
