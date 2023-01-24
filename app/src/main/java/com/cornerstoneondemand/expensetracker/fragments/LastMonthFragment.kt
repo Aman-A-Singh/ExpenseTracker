@@ -12,13 +12,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.cornerstoneondemand.expensetracker.EditExpenseActivity
 import com.cornerstoneondemand.expensetracker.R
 import com.cornerstoneondemand.expensetracker.adapters.ExpenseAdapter
-import com.cornerstoneondemand.expensetracker.database.ExpenseDatabase
-import com.cornerstoneondemand.expensetracker.databinding.FragmentFutureBinding
-import com.cornerstoneondemand.expensetracker.databinding.FragmentLastMonthBinding
-import com.cornerstoneondemand.expensetracker.databinding.FragmentThisMonthBinding
 import com.cornerstoneondemand.expensetracker.utilities.EXPENSE_ID
 import com.cornerstoneondemand.expensetracker.viewmodel.LastMonthViewModel
-import com.cornerstoneondemand.expensetracker.viewmodel.ThisMonthViewModel
 
 
 class LastMonthFragment : Fragment() {
