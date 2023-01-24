@@ -44,7 +44,8 @@ class ThisMonthFragment : Fragment() {
 
         val date = Date()
         val text_view_date = view.findViewById<TextView>(R.id.text_view_date)
-        text_view_date.text = date.toString()
+        val TextViewdateFormat = SimpleDateFormat("DD", Locale.getDefault())
+        text_view_date.text = TextViewdateFormat.format(date)
 
         val text_view_month_year = view.findViewById<TextView>(R.id.text_view_month_year)
         val dateFormat = SimpleDateFormat("MMMM yyyy", Locale.getDefault())
