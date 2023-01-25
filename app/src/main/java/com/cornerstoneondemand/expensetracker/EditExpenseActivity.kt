@@ -42,8 +42,10 @@ class EditExpenseActivity : AppCompatActivity() {
         val expense = viewModel.getExpense(expenseId).asLiveData()
         expense.observe(this) { it ->
             binding.editTvAmount.setText(it.amount.toString())
+            category = it.category_id
             binding.category.text = getCategoryName(it.category_id.value)
             binding.editTextWriteNote.setText(it.note.toString())
+            expenseDate = it.date
             binding.textViewDate.text = dateFormat.format(it.date)
             binding.spinnerPaymentMode.setSelection(payment_modes.indexOf(it.payment_mode))
         }
